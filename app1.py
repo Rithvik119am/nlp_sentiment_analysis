@@ -3,9 +3,7 @@ from nltk.sentiment import SentimentIntensityAnalyzer
 
 def main():
     st.title("Sentiment Analysis for Text Documents")
-    
     uploaded_file = st.file_uploader("Upload a text document", type=['txt'])
-    
     if uploaded_file is not None:
         file_contents = uploaded_file.read().decode("utf-8")
         st.markdown("### Document Preview")
@@ -13,9 +11,10 @@ def main():
         
         if st.button("Analyze Sentiment"):
             sentiment_score = analyze_sentiment(file_contents)
-            st.table({'Sentiment Score Range': ['75-100', '35 - 75', '-35 to 35', '-35 to -75', '-75 to -100'],
-                    'Sentiment Label': ['Very Positive', 'Positive', 'Neutral', 'Negative','Very Negative' ]
-            }
+            st.table({
+                        'Sentiment Score Range': ['75-100', '35 - 75', '-35 to 35', '-35 to -75', '-75 to -100'],
+                        'Sentiment Label': ['Very Positive', 'Positive', 'Neutral', 'Negative','Very Negative' ]
+                        }
                     )
             st.markdown("### The Sentiment Meter")
             display_sentiment_meter(sentiment_score)
